@@ -20,6 +20,20 @@ def process():
     conn.commit()
     return "<body bgcolor='yellow' text='red'><h1><center>Data Entry complete</center></h1></body>"
 
+@app.route("/see")
+def show():
+    rows=cur.execute("select * from entry")
+    print(type(rows))
+    r=list(rows)
+    print(type(r))
+    for i in r:
+        print(i)
+    return render_template('display.html', r=r)
+
+
+
+
+
 if __name__=='__main__':
     app.run(debug=True)
 
